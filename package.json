@@ -1,0 +1,17 @@
+{
+  "name": "node.js-random-color-generator",
+  "version": "1.0.0",
+  "description": "App that generates a frame of hashtags with a random color",
+  "keywords": [],
+  "license": "MIT",
+  "author": "Gil SB",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "eslint-config-upleveled": "^5.0.4",
+    "typescript": "^5.2.2"
+  }
+}
