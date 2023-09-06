@@ -24,13 +24,13 @@ console.log(3, hueStringUser);
 console.log(4, hueStringUserToRGBFormat);
 console.log(5, luminosityStringUser);
 console.log(6, Color('red'));
-
+console.log(7, Color('red').hex());
 // to be done
 
 if (argv.length < 3) {
   console.log(chalk.hex(randomHexColor())(hashFrame));
 } else if (argv.length === 3) {
-  console.log(chalk.red(hashFrame));
+  console.log(8, chalk.hex(Color(hueStringUser).hex())(hashFrame));
 } else {
   console.log(chalk.blue(hashFrame));
 }
