@@ -18,15 +18,19 @@ const luminosityStringUser = argv[3];
 
 const hueStringUserToRGBFormat = Color(hueStringUser);
 
-console.log(argv);
-console.log(hueStringUserToRGBFormat.hsl().color[2]); // converts color to hsl format and access lightness
-console.log(hueStringUser);
-console.log(hueStringUserToRGBFormat);
-console.log(luminosityStringUser);
+console.log(1, argv);
+console.log(2, hueStringUserToRGBFormat.hsl().color[2]); // converts color to hsl format and access lightness
+console.log(3, hueStringUser);
+console.log(4, hueStringUserToRGBFormat);
+console.log(5, luminosityStringUser);
+console.log(6, Color('red'));
 
 // to be done
-if (argv[2] === 'red' || argv[2] === 'green' || argv[2] === 'blue') {
-  console.log(chalk.blue(hashFrame));
-} else {
+
+if (argv.length < 3) {
   console.log(chalk.hex(randomHexColor())(hashFrame));
+} else if (argv.length === 3) {
+  console.log(chalk.red(hashFrame));
+} else {
+  console.log(chalk.blue(hashFrame));
 }
