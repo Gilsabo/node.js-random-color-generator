@@ -3,6 +3,11 @@ import chalk from 'chalk'; // prints color with hex format
 import Color from 'color'; // prints color with hsl format
 import randomHexColor from 'random-hex-color'; // generates randomcolor in hex format
 
+const hueStringUser = argv[2];
+const luminosityStringUser = argv[3];
+
+const valueHEX = () => {};
+
 const hashFrame = ` ###############################
  ###############################
  ###############################
@@ -12,9 +17,6 @@ const hashFrame = ` ###############################
  ###############################
  ###############################
  ###############################`;
-
-const hueStringUser = argv[2];
-const luminosityStringUser = argv[3];
 
 const hueStringUserToRGBFormat = Color(hueStringUser);
 
@@ -44,4 +46,5 @@ if (argv.length < 3) {
 
   // here changes the the hsl to hex
   console.log(14, chalk.hex(Color(result).hex())(hashFrame));
+  console.log(Color(result).hex());
 }
