@@ -20,53 +20,28 @@ const hueStringUserToRGBFormat = Color(hueStringUser);
 
 function convertLuminosityStringUser(userValue) {
   if (userValue === 'dark') {
-    return 75;
-  } else if (userValue === 'light') {
     return 25;
+  } else if (userValue === 'light') {
+    return 75;
   } else {
     return 'the value of luminosity does not correspond. Either type dark or light';
   }
 }
-
-console.log(2, hueStringUserToRGBFormat.hsl().color[2]); // converts color to hsl format and access lightness
-console.log(3, hueStringUser);
-console.log(4, hueStringUserToRGBFormat);
-console.log(5, luminosityStringUser);
-console.log(6, Color('red'));
-console.log(7, Color('red').hex());
-// to be done
 
 if (argv.length < 3) {
   console.log(chalk.hex(randomHexColor())(hashFrame));
 } else if (argv.length === 3) {
   console.log(8, chalk.hex(Color(hueStringUser).hex())(hashFrame));
 } else {
+  // assign the value of the user luminosity into a variable
   const luminosityChosenByTheUser =
     convertLuminosityStringUser(luminosityStringUser);
-  console.log(9, luminosityChosenByTheUser);
+  // tur RGB into hsl
+  const result = Color(hueStringUserToRGBFormat).hsl();
 
-  const result = Color(hueStringUser).hsl().color;
-  const resultWithLu = result;
-  resultWithLu[2] = luminosityChosenByTheUser;
-  console.log(12, resultWithLu);
-  console.log(13, result);
-  //until here take the value right
+  // change luminosity in the the hsl to fit user's choice
+  result.color[2] = luminosityChosenByTheUser;
 
-  // here changes the value one turning to hex
-  console.log(14, chalk.hex(Color(resultWithLu).hex())(hashFrame));
-  console.log(15, Color(resultWithLu));
-
-  console.log(16, result);
-  /* const hello = (result.color[2] = luminosityChosenByTheUser);
-  console.log(14, hello);*/
-
-  /*
-  const hexColor = Color(hueStringUser);
-  console.log(10, chalk.hex(hexColor.color)(hashFrame));
-  console.log(11, hexColor.color);
-
-  /* console.log(
-    10,
-    (Color(hueStringUser).hsl().color[3] = luminosityChosenByTheUser),
-  );*/
+  // here changes the the hsl to hex
+  console.log(14, chalk.hex(Color(result).hex())(hashFrame));
 }
