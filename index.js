@@ -20,15 +20,14 @@ const hueStringUserToRGBFormat = Color(hueStringUser);
 
 function convertLuminosityStringUser(userValue) {
   if (userValue === 'dark') {
-    return 0.75;
+    return 75;
   } else if (userValue === 'light') {
-    return 0.25;
+    return 25;
   } else {
     return 'the value of luminosity does not correspond. Either type dark or light';
   }
 }
 
-console.log(1, argv);
 console.log(2, hueStringUserToRGBFormat.hsl().color[2]); // converts color to hsl format and access lightness
 console.log(3, hueStringUser);
 console.log(4, hueStringUserToRGBFormat);
@@ -45,7 +44,24 @@ if (argv.length < 3) {
   const luminosityChosenByTheUser =
     convertLuminosityStringUser(luminosityStringUser);
   console.log(9, luminosityChosenByTheUser);
-  const hexColor = Color(hueStringUser).lighten(luminosityChosenByTheUser);
+
+  const result = Color(hueStringUser).hsl().color;
+  const resultWithLu = result;
+  resultWithLu[2] = luminosityChosenByTheUser;
+  console.log(12, resultWithLu);
+  console.log(13, result);
+  //until here take the value right
+
+  // here changes the value one turning to hex
+  console.log(14, chalk.hex(Color(resultWithLu).hex())(hashFrame));
+  console.log(15, Color(resultWithLu));
+
+  console.log(16, result);
+  /* const hello = (result.color[2] = luminosityChosenByTheUser);
+  console.log(14, hello);*/
+
+  /*
+  const hexColor = Color(hueStringUser);
   console.log(10, chalk.hex(hexColor.color)(hashFrame));
   console.log(11, hexColor.color);
 
