@@ -3,20 +3,10 @@ import chalk from 'chalk'; // prints color with hex format
 import Color from 'color'; // prints color with hsl format
 import randomHexColor from 'random-hex-color'; // generates randomcolor in hex format
 
+let result;
+
 const hueStringUser = argv[2];
 const luminosityStringUser = argv[3];
-
-const valueHEX = () => {};
-
-const hashFrame = ` ###############################
- ###############################
- ###############################
- #####                     #####
- #####       ${randomHexColor()}       #####
- #####                     #####
- ###############################
- ###############################
- ###############################`;
 
 const hueStringUserToRGBFormat = Color(hueStringUser);
 
@@ -30,6 +20,33 @@ function convertLuminosityStringUser(userValue) {
   }
 }
 
+const valueHEX = () => {
+  if (argv.length < 3) {
+    return randomHexColor();
+  } else if (argv.length === 3) {
+    return Color(hueStringUser).hex();
+  } else {
+    const luminosityChosenByTheUser =
+      convertLuminosityStringUser(luminosityStringUser);
+    // tur RGB into hsl
+    result = Color(hueStringUserToRGBFormat).hsl();
+
+    // change luminosity in the the hsl to fit user's choice
+    result.color[2] = luminosityChosenByTheUser;
+    return Color(result).hex();
+  }
+};
+
+const hashFrame = ` ###############################
+ ###############################
+ ###############################
+ #####                     #####
+ #####       ${valueHEX()}       #####
+ #####                     #####
+ ###############################
+ ###############################
+ ###############################`;
+
 if (argv.length < 3) {
   console.log(chalk.hex(randomHexColor())(hashFrame));
 } else if (argv.length === 3) {
@@ -39,7 +56,7 @@ if (argv.length < 3) {
   const luminosityChosenByTheUser =
     convertLuminosityStringUser(luminosityStringUser);
   // tur RGB into hsl
-  const result = Color(hueStringUserToRGBFormat).hsl();
+  result = Color(hueStringUserToRGBFormat).hsl();
 
   // change luminosity in the the hsl to fit user's choice
   result.color[2] = luminosityChosenByTheUser;
